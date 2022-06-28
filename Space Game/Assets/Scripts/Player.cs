@@ -23,6 +23,11 @@ public class Player : MonoBehaviour
     public float fire_rate;
     //Next Time to Fire
     float NTTF;
+    //Number of shots
+    int NOS = 3;
+    float spread = 30;
+    //Defines current gun scriptable obj
+    public Gun_Obj cur_Gun;
 
     //Score System
     public int cur_Score;
@@ -51,6 +56,9 @@ public class Player : MonoBehaviour
         //Remove if statement after development
        if(score_display != null) 
         score_display.text = "Score:" + cur_Score;
+
+       if(cur_Gun != null) { bul_speed = cur_Gun.bul_speed; fire_rate = cur_Gun.fire_rate; NOS = cur_Gun.num_of_buls; }
+
     }
 
     private void FixedUpdate()
@@ -70,9 +78,17 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bul = Instantiate(bullet, fire_Pos.position, fire_Pos.rotation);
-        Rigidbody2D bul_rb = bul.GetComponent<Rigidbody2D>();
-        bul_rb.AddForce(fire_Pos.up * bul_speed, ForceMode2D.Impulse);
+
+        float rot = -(spread / NOS);
+
+        for (int i = 0; i < NOS; i++)
+        {
+            GameObject bul = Instantiate(bullet, fire_Pos.position, fire_Pos.transform.rotation);
+            Rigidbody2D bul_rb = bul.GetComponent<Rigidbody2D>();
+            bul.transform.Rotate(0, 0, rot);
+            bul_rb.AddForce(bul.transform.up * bul_speed, ForceMode2D.Impulse);
+            rot += spread/NOS;
+        } 
     }
 
     private void OnCollisionEnter2D(Collision2D col)
