@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   gun_name: Shotgun
-  bul_speed: 0
-  fire_rate: 0
-  num_of_buls: 0
+  bul_speed: 5
+  fire_rate: 3
+  num_of_buls: 1

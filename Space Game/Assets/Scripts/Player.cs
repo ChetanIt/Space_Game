@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     float NTTF;
     //Number of shots
     int NOS = 3;
-    float spread = 30;
+    //float spread = 30;
     //Defines current gun scriptable obj
     public Gun_Obj cur_Gun;
 
@@ -79,16 +79,12 @@ public class Player : MonoBehaviour
     void Shoot()
     {
 
-        float rot = -(spread / NOS);
-
-        for (int i = 0; i < NOS; i++)
-        {
+       
             GameObject bul = Instantiate(bullet, fire_Pos.position, fire_Pos.transform.rotation);
             Rigidbody2D bul_rb = bul.GetComponent<Rigidbody2D>();
-            bul.transform.Rotate(0, 0, rot);
-            bul_rb.AddForce(bul.transform.up * bul_speed, ForceMode2D.Impulse);
-            rot += spread/NOS;
-        } 
+            bul_rb.AddForce(fire_Pos.up * bul_speed, ForceMode2D.Impulse);
+           
+        
     }
 
     private void OnCollisionEnter2D(Collision2D col)
