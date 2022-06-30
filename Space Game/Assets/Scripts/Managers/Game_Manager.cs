@@ -13,7 +13,8 @@ public class Game_Manager : MonoBehaviour
     {
         gameObject.transform.localScale = new Vector2(galaxy_Rad * 2, galaxy_Rad * 2);
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        Vector2[] pol_points = gameObject.AddComponent<PolygonCollider2D>().points;
+        gameObject.AddComponent<PolygonCollider2D>();
+        Vector2[] pol_points = GetComponent<PolygonCollider2D>().points;
         Destroy(sr);
         Destroy(GetComponent<PolygonCollider2D>());
         gameObject.AddComponent<EdgeCollider2D>().points = pol_points;
@@ -43,6 +44,7 @@ public class Game_Manager : MonoBehaviour
             line.SetPosition(i, new Vector3(x, y, z));
 
             angle += (360f / segments);
+
         }
     }
 

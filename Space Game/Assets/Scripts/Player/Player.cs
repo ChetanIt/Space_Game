@@ -25,7 +25,8 @@ public class Player : MonoBehaviour
     float NTTF;
     //Number of shots
     int NOS = 3;
-    //float spread = 30;
+    [SerializeField]
+    float spread = 30;
     //Defines current gun scriptable obj
     public Gun_Obj cur_Gun;
 
@@ -65,26 +66,44 @@ public class Player : MonoBehaviour
     {
         rb.MovePosition(rb.position + movement * move_speed * Time.fixedDeltaTime);
 
-        Vector2 lookDir = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
+        LookAtMouse(mousePos);
 
         if (Input.GetButton("Fire1") && Time.time >= NTTF)
         {
-            Shoot();
+            for (int i = 0; i < NOS; i++)
+            {
+                Shoot();
+            } 
             NTTF = Time.time + 1f / fire_rate;
         }
     }
 
+    void LookAtMouse(Vector3 tar)
+    {
+        Vector2 lookDir = transform.position - tar;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90));
+    }
+
     void Shoot()
     {
+        if(NOS > 1)
+        {
+            GameObject b = Instantiate(bullet, fire_Pos.position, fire_Pos.transform.rotation);
+            Rigidbody2D brb = b.GetComponent<Rigidbody2D>();
+            b.transform.Rotate(0, 0, spread);
+            Vector2 dir = transform.rotation * Vector2.up;
+            Vector2 pdir = Vector2.Perpendicular(dir) * Random.Range(-spread, spread);
+            brb.velocity = (dir + pdir) * bul_speed;
+        }
 
-       
-            GameObject bul = Instantiate(bullet, fire_Pos.position, fire_Pos.transform.rotation);
-            Rigidbody2D bul_rb = bul.GetComponent<Rigidbody2D>();
-            bul_rb.AddForce(fire_Pos.up * bul_speed, ForceMode2D.Impulse);
-           
+        else
+        {
+            GameObject c = Instantiate(bullet, fire_Pos.position, fire_Pos.rotation);
+            c.GetComponent<Rigidbody2D>().AddForce(fire_Pos.up * bul_speed, ForceMode2D.Impulse);
+        }
         
+      
     }
 
     private void OnCollisionEnter2D(Collision2D col)
