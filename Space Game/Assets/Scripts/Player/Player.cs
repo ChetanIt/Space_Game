@@ -5,6 +5,9 @@ using TMPro;
 
 public class Player : MonoBehaviour
 {
+
+    public static Player Instance;
+
     //Movemnet
     public float move_speed;
     Rigidbody2D rb;
@@ -38,6 +41,11 @@ public class Player : MonoBehaviour
     //Money System
     public int cur_amount;
 
+    //Health
+    public int num_of_hearts;
+    public int cur_health;
+    float re;
+
 
 
     private void Start()
@@ -45,6 +53,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         cam = FindObjectOfType<Camera>();
         rb.gravityScale = 0;
+        Instance = this;
+        cur_health = num_of_hearts;
     }
 
     private void Update()
@@ -76,6 +86,8 @@ public class Player : MonoBehaviour
             } 
             NTTF = Time.time + 1f / fire_rate;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space)) TakeDamage();
     }
 
     void LookAtMouse(Vector3 tar)
@@ -112,6 +124,8 @@ public class Player : MonoBehaviour
         {
             AddAmount();
         }
+
+        
     }
 
     public void AddScore(int STBA)
@@ -123,5 +137,20 @@ public class Player : MonoBehaviour
     {
         //Add code later
         //cur_amount += ATBA;
+    }
+
+    void TakeDamage()
+    {
+       if(re == 0)
+       {
+            cur_health--;
+            Invoke("ResetT", 2);
+            re = 2;
+       } 
+    }
+    
+    void ResetT()
+    {
+        re = 0;
     }
 }

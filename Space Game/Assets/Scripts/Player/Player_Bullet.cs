@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class Player_Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (col.gameObject.CompareTag("Enemy")) { Destroy(col.gameObject); Destroy(gameObject); }
     }
 }
