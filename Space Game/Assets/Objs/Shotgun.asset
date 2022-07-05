@@ -15,4 +15,5 @@ MonoBehaviour:
   gun_name: Shotgun
   bul_speed: 5
   fire_rate: 1
-  num_of_buls: 1
+  num_of_buls: 5
+  bul_type: 2

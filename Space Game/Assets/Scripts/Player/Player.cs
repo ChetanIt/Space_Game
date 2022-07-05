@@ -99,23 +99,42 @@ public class Player : MonoBehaviour
 
     void Shoot()
     {
-        if(NOS > 1)
+        if(cur_Gun.bul_type == Gun_Obj.Bul_Type.Normal || cur_Gun.bul_type == Gun_Obj.Bul_Type.Missile)
         {
-            GameObject b = Instantiate(bullet, fire_Pos.position, fire_Pos.transform.rotation);
-            Rigidbody2D brb = b.GetComponent<Rigidbody2D>();
-            b.transform.Rotate(0, 0, spread);
-            Vector2 dir = transform.rotation * Vector2.up;
-            Vector2 pdir = Vector2.Perpendicular(dir) * Random.Range(-spread, spread);
-            brb.velocity = (dir + pdir) * bul_speed;
+            if (NOS > 1)
+            {
+                GameObject b = Instantiate(bullet, fire_Pos.position, fire_Pos.transform.rotation);
+                Rigidbody2D brb = b.GetComponent<Rigidbody2D>();
+                b.transform.Rotate(0, 0, spread);
+                Vector2 dir = transform.rotation * Vector2.up;
+                Vector2 pdir = Vector2.Perpendicular(dir) * Random.Range(-spread, spread);
+                brb.velocity = (dir + pdir) * bul_speed;
+
+                if (cur_Gun.bul_type == Gun_Obj.Bul_Type.Missile)
+                {
+                    b.GetComponent<Player_Bullet>().isExplode = true;
+                }
+            }
+
+            else
+            {
+                GameObject c = Instantiate(bullet, fire_Pos.position, fire_Pos.rotation);
+                c.GetComponent<Rigidbody2D>().AddForce(fire_Pos.up * bul_speed, ForceMode2D.Impulse);
+
+                if (cur_Gun.bul_type == Gun_Obj.Bul_Type.Missile)
+                {
+                    c.GetComponent<Player_Bullet>().isExplode = true;
+                }
+            }
+
+
         }
 
-        else
+        else if(cur_Gun.bul_type == Gun_Obj.Bul_Type.Laser)
         {
-            GameObject c = Instantiate(bullet, fire_Pos.position, fire_Pos.rotation);
-            c.GetComponent<Rigidbody2D>().AddForce(fire_Pos.up * bul_speed, ForceMode2D.Impulse);
+            Debug.Log("Laser");
         }
-        
-      
+
     }
 
     private void OnCollisionEnter2D(Collision2D col)
@@ -139,11 +158,12 @@ public class Player : MonoBehaviour
         //cur_amount += ATBA;
     }
 
-    void TakeDamage()
+    public void TakeDamage()
     {
        if(re == 0)
        {
             cur_health--;
+            Audio_Manager.instance.Play_Sound("OnPlayerDamage");
             Invoke("ResetT", 2);
             re = 2;
        } 

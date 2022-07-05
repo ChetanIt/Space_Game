@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Particle_Effect : MonoBehaviour
+public class Particles
 {
     public string name_;
+    public int id;
     public GameObject effect;
+    
 
 }
