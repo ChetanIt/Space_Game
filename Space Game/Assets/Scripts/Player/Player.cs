@@ -46,14 +46,16 @@ public class Player : MonoBehaviour
     public int cur_health;
     float re;
 
-
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         cam = FindObjectOfType<Camera>();
         rb.gravityScale = 0;
-        Instance = this;
         cur_health = num_of_hearts;
     }
 

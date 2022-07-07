@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-   
+
     public float retreat_Distance, stopping_Distance, detect_Distance, mov_speed, fire_rate, bul_for;
     //Number of Bullets
     public int NOB;
@@ -12,13 +12,13 @@ public class Enemy : MonoBehaviour
     Transform player, firePos;
     Rigidbody2D rb;
 
-    
+
     public int Health;
 
     //Shooting
     [SerializeField]
     GameObject bullet;
-    
+
 
 
     void Start()
@@ -39,19 +39,20 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        
-        if (Vector2.Distance(player.position, transform.position) <= detect_Distance && Vector2.Distance(player.position, transform.position) > stopping_Distance)
+
+        if (Vector2.Distance(player.position, transform.position) > stopping_Distance)
         {
             LookAtPlayer();
             MoveTowardsPlayer();
         }
-        else if(Vector2.Distance(player.position, transform.position) < stopping_Distance && Vector2.Distance(player.position, transform.position) > retreat_Distance)
-        { 
-            Shoot(); 
+        else if (Vector2.Distance(player.position, transform.position) < stopping_Distance && Vector2.Distance(player.position, transform.position) > retreat_Distance)
+        {
+            Shoot();
+            transform.position = this.transform.position;
         }
-        else if(Vector2.Distance(player.position, transform.position) < retreat_Distance) 
-        { 
-            Retreat(); 
+        else if (Vector2.Distance(player.position, transform.position) < retreat_Distance)
+        {
+            Retreat();
         }
     }
 
@@ -68,7 +69,7 @@ public class Enemy : MonoBehaviour
             //Reset Shooting
             t = false;
             Invoke("ResetS", fire_rate);
-        }  
+        }
     }
 
     void ResetS()
@@ -99,7 +100,7 @@ public class Enemy : MonoBehaviour
 
     public void Damage(int d)
     {
-        if(Health > 0) Health -= d;
+        if (Health > 0) Health -= d;
         if (Health <= 0) Destroy(gameObject);
     }
 }

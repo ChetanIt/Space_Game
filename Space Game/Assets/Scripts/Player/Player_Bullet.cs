@@ -10,24 +10,13 @@ public class Player_Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Enemy") && !isExplode) 
+        if (col.gameObject.CompareTag("Enemy")) 
         {
-            col.gameObject.GetComponent<Enemy>().Damage(1);
+            //col.gameObject.GetComponent<Enemy>().Damage(1);
             DesObj(); 
         }
 
-        if (col.gameObject.CompareTag("Enemy") && isExplode)
-        {
-            col.gameObject.GetComponent<Enemy>().Damage(1);
-            Explode();
-            DesObj();
-        }
-
-        if(col.gameObject.CompareTag("Game Manager"))
-        {
-            if (isExplode) { Explode(); }
-            DesObj();
-        }
+        
     }
 
     void Explode()
@@ -43,10 +32,6 @@ public class Player_Bullet : MonoBehaviour
             Destroy(gameObject);
         } 
 
-        else if(isExplode && !isSplit)
-        {
-            Explode();
-            Destroy(gameObject);
-        }
+        
     }
 }
