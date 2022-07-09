@@ -12,23 +12,17 @@ public class Player_Bullet : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy")) 
         {
-            //col.gameObject.GetComponent<Enemy>().Damage(1);
-            DesObj(); 
+            Destroy(col.gameObject);
+            DesObj(col.gameObject); 
         }
 
-        
+        if (col.gameObject.CompareTag("Game Manager")) DesObj(this.gameObject);
     }
-
-    void Explode()
-    {
-      
-    }
-
-    void DesObj()
+    void DesObj(GameObject col)
     {
         if (!isExplode && !isSplit)
         {
-            Particle_Manager.instance.Play_Effect(0, this.transform.position);
+            Particle_Manager.instance.Play_Effect(0, this.transform.position, col.gameObject.GetComponent<SpriteRenderer>().color);
             Destroy(gameObject);
         } 
 

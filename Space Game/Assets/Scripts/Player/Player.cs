@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
     //Score System
     public int cur_Score;
     [SerializeField]
-    TextMeshProUGUI score_display;
+    TextMeshProUGUI score_display, hearts_display;
 
     //Money System
     public int cur_amount;
@@ -45,6 +45,10 @@ public class Player : MonoBehaviour
     public int num_of_hearts;
     public int cur_health;
     float re;
+
+    //Weapon Switcher
+    public Gun_Obj[] weapons;
+    public int weapon_index;
 
     private void Awake()
     {
@@ -70,7 +74,25 @@ public class Player : MonoBehaviour
        if(score_display != null) 
         score_display.text = "Score:" + cur_Score;
 
+        if (hearts_display != null) hearts_display.text = cur_health.ToString();
+
        if(cur_Gun != null) { bul_speed = cur_Gun.bul_speed; fire_rate = cur_Gun.fire_rate; NOS = cur_Gun.num_of_buls; }
+
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            if (weapon_index >= weapons.Length - 1) weapon_index = 0;
+            else weapon_index++;
+
+            cur_Gun = weapons[weapon_index];
+        }
+
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            if (weapon_index <= 0) weapon_index = weapons.Length - 1;
+            else weapon_index--;
+
+            cur_Gun = weapons[weapon_index];
+        }
 
     }
 
@@ -166,8 +188,8 @@ public class Player : MonoBehaviour
        {
             cur_health--;
             Audio_Manager.instance.Play_Sound("OnPlayerDamage");
-            Invoke("ResetT", 2);
-            re = 2;
+            Invoke("ResetT", 4);
+            re = 4;
        } 
     }
     

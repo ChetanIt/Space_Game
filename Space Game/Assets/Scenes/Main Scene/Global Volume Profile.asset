@@ -41,25 +41,6 @@ MonoBehaviour:
   intensity:
     m_OverrideState: 1
     m_Value: 0.1
---- !u!114 &-5734531403625365039
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 221518ef91623a7438a71fef23660601, type: 3}
-  m_Name: WhiteBalance
-  m_EditorClassIdentifier: 
-  active: 1
-  temperature:
-    m_OverrideState: 1
-    m_Value: 29.68
-  tint:
-    m_OverrideState: 1
-    m_Value: 4.14
 --- !u!114 &-1834018800932654846
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -124,7 +105,6 @@ MonoBehaviour:
   - {fileID: 5652665822897237937}
   - {fileID: -217512825489432716}
   - {fileID: -7948494878274404778}
-  - {fileID: -5734531403625365039}
   - {fileID: 8112266100238129257}
 --- !u!114 &293386598121856091
 MonoBehaviour:
@@ -141,7 +121,7 @@ MonoBehaviour:
   active: 1
   intensity:
     m_OverrideState: 1
-    m_Value: 0.2
+    m_Value: 0.18
   xMultiplier:
     m_OverrideState: 0
     m_Value: 1
@@ -175,13 +155,13 @@ MonoBehaviour:
     m_Value: 0.73
   scatter:
     m_OverrideState: 0
-    m_Value: 0.7
+    m_Value: 0.53
   clamp:
     m_OverrideState: 0
     m_Value: 65472
   tint:
     m_OverrideState: 0
-    m_Value: {r: 1, g: 1, b: 1, a: 1}
+    m_Value: {r: 0, g: 0, b: 0, a: 1}
   highQualityFiltering:
     m_OverrideState: 0
     m_Value: 0
@@ -190,10 +170,10 @@ MonoBehaviour:
     m_Value: 1
   dirtTexture:
     m_OverrideState: 0
-    m_Value: {fileID: 0}
+    m_Value: {fileID: 2800000, guid: f88677df267a41d6be1e7a6133e7d227, type: 3}
   dirtIntensity:
     m_OverrideState: 0
-    m_Value: 0
+    m_Value: 5.45
 --- !u!114 &5652665822897237937
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -214,8 +194,8 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0.23
   response:
-    m_OverrideState: 0
-    m_Value: 0.8
+    m_OverrideState: 1
+    m_Value: 0
   texture:
     m_OverrideState: 0
     m_Value: {fileID: 0}
