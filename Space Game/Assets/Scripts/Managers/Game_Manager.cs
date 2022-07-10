@@ -9,19 +9,19 @@ public class Game_Manager : MonoBehaviour
     public int segments;
     LineRenderer line;
 
-    private void Awake()
+    private void Start()
     {
         gameObject.transform.localScale = new Vector2(galaxy_Rad * 2, galaxy_Rad * 2);
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        gameObject.AddComponent<PolygonCollider2D>();
-        Vector2[] pol_points = GetComponent<PolygonCollider2D>().points;
+        PolygonCollider2D poly = gameObject.AddComponent<PolygonCollider2D>();
+        Vector2[] pol_points = poly.points;
         Destroy(sr);
-        Destroy(GetComponent<PolygonCollider2D>());
-        gameObject.AddComponent<EdgeCollider2D>().points = pol_points;
+        Destroy(poly);
+        EdgeCollider2D e = this.GetComponent<EdgeCollider2D>();
+        pol_points[39] = pol_points[0];
+        e.points = pol_points;
         Destroy(sr);
-
         line = gameObject.GetComponent<LineRenderer>();
-
         line.positionCount = segments + 1;
         line.useWorldSpace = true;
         CreatePoints();

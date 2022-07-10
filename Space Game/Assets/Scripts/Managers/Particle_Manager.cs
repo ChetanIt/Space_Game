@@ -19,7 +19,9 @@ public class Particle_Manager : MonoBehaviour
         if (p != null) 
         { 
             GameObject g = Instantiate(p.effect, pos, p.effect.transform.rotation);
-            g.GetComponent<ParticleSystem>().startColor = col;
+            var p1 = g.GetComponent<ParticleSystem>();
+            var m = p1.main;
+            m.startColor = col;
             Destroy(g, 2f);
         }
 

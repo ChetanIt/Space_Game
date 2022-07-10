@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun_name: Pistol
   bul_speed: 10
-  fire_rate: 3
+  fire_rate: 5
   num_of_buls: 1
   bul_type: 2
