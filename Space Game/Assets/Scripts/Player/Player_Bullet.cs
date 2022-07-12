@@ -15,7 +15,7 @@ public class Player_Bullet : MonoBehaviour
             Destroy(col.gameObject);
             DesObj(col.gameObject); 
         }
-
+        
         if (col.gameObject.CompareTag("Game Manager")) DesObj(this.gameObject);
     }
     void DesObj(GameObject col)
@@ -25,7 +25,5 @@ public class Player_Bullet : MonoBehaviour
             Particle_Manager.instance.Play_Effect(0, this.transform.position, col.gameObject.GetComponent<SpriteRenderer>().color);
             Destroy(gameObject);
         } 
-
-        
     }
 }

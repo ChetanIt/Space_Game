@@ -223,7 +223,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.03728102, b: 0.0039215684, a: 1}
+      maxColor: {r: 0.003921569, g: 0.53333336, b: 0.64705884, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -748,7 +748,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 3.5
       mode: 0
       spread: 0
       speed:
@@ -4915,8 +4915,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.62911344, b: 0, a: 1}
-  m_Intensity: 28.6
+  m_Color: {r: 0.043137256, g: 1, b: 1, a: 1}
+  m_Intensity: 354.33
   m_Range: 0.76
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -4961,7 +4961,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: NaN, y: 1.05e-43, z: NaN, w: 0}
+  m_BoundingSphereOverride: {x: 5.31e-43, y: 2e-44, z: 0, w: 7.3e-44}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -5030,7 +5030,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4681371805855447015}
   serializedVersion: 8
-  lengthInSec: 0.1
+  lengthInSec: 0.3
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -5212,7 +5212,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.8039216, b: 0, a: 1}
+      maxColor: {r: 0.043137256, g: 1, b: 0.9019608, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -5737,7 +5737,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 3.5
       mode: 0
       spread: 0
       speed:
@@ -8864,7 +8864,7 @@ ParticleSystem:
     light: {fileID: 3431940728507917414}
     randomDistribution: 1
     color: 0
-    range: 1
+    range: 0
     intensity: 1
     rangeCurve:
       serializedVersion: 2
@@ -10082,7 +10082,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.25882354, b: 0.003921569, a: 1}
+      maxColor: {r: 0.003921569, g: 0.79607844, b: 0.8117647, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -10607,7 +10607,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 3.5
       mode: 0
       spread: 0
       speed:

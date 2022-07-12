@@ -94,6 +94,8 @@ public class Player : MonoBehaviour
             cur_Gun = weapons[weapon_index];
         }
 
+        if (Input.GetKeyDown(KeyCode.Space)) End();
+
     }
 
     private void FixedUpdate()
@@ -128,7 +130,8 @@ public class Player : MonoBehaviour
             if (NOS > 1)
             {
                 GameObject b = Instantiate(bullet, fire_Pos.position, fire_Pos.transform.rotation);
-                Rigidbody2D brb = b.GetComponent<Rigidbody2D>();
+                Rigidbody2D brb = b.AddComponent<Rigidbody2D>();
+                brb.gravityScale = 0;
                 b.transform.Rotate(0, 0, spread);
                 Vector2 dir = transform.rotation * Vector2.up;
                 Vector2 pdir = Vector2.Perpendicular(dir) * Random.Range(-spread, spread);
@@ -143,6 +146,7 @@ public class Player : MonoBehaviour
             else
             {
                 GameObject c = Instantiate(bullet, fire_Pos.position, fire_Pos.rotation);
+                c.AddComponent<Rigidbody2D>().gravityScale = 0;
                 c.GetComponent<Rigidbody2D>().AddForce(fire_Pos.up * bul_speed, ForceMode2D.Impulse);
 
                 if (cur_Gun.bul_type == Gun_Obj.Bul_Type.Missile)
@@ -196,5 +200,23 @@ public class Player : MonoBehaviour
     void ResetT()
     {
         re = 0;
+    }
+
+    void End()
+    {
+        GameObject[] obj = FindObjectsOfType<GameObject>();
+        List<GameObject> enemies = new List<GameObject>();
+        for (int i = 0; i < obj.Length; i++)
+        {
+            if (obj[i].CompareTag("Enemy"))
+            {
+                enemies.Add(obj[i]);
+            }
+        }
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            Destroy(enemies[i]);
+        }
+        End_Screen.instance.GameEnded();
     }
 }

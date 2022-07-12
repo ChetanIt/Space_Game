@@ -38,16 +38,14 @@ public class Game_Manager : MonoBehaviour
 
         for (int i = 0; i < (segments + 1); i++)
         {
-            x = Mathf.Sin(Mathf.Deg2Rad * angle) * galaxy_Rad;
-            y = Mathf.Cos(Mathf.Deg2Rad * angle) * galaxy_Rad;
+            x = Mathf.Sin(Mathf.Deg2Rad * angle) * (galaxy_Rad + .1f);
+            y = Mathf.Cos(Mathf.Deg2Rad * angle) * (galaxy_Rad + .1f);
 
             line.SetPosition(i, new Vector3(x, y, z));
 
             angle += (360f / segments);
         }
     }
-
-
 
     private void OnDrawGizmosSelected()
     {

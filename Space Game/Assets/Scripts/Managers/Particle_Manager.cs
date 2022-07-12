@@ -8,9 +8,16 @@ public class Particle_Manager : MonoBehaviour
     public Particles[] effects;
     public static Particle_Manager instance;
 
+
+
     private void Awake()
     {
         instance = this;
+
+        for (int i = 0; i < effects.Length; i++)
+        {
+            effects[i].id = i;
+        }
     }
 
     public void Play_Effect(int id  , Vector3 pos, Color col)
