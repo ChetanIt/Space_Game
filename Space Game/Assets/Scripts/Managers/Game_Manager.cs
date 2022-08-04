@@ -8,6 +8,15 @@ public class Game_Manager : MonoBehaviour
     public float galaxy_Rad;
     public int segments;
     LineRenderer line;
+    public enum gameState { Playing, Paused, InMainMenu, InEndScreen}
+    public gameState cur_game_state;
+
+    public static Game_Manager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -50,6 +59,33 @@ public class Game_Manager : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, galaxy_Rad);
+    }
+
+    public void BtnClked(int btnId)
+    {
+        if (btnId == 1)
+        {
+            Debug.Log("Play Button was Clicked");
+            cur_game_state = gameState.Playing;
+        }
+
+        if (btnId == 2)
+        {
+            Debug.Log("Settings Button was Clicked");
+            cur_game_state = gameState.Paused;
+        }
+
+        if (btnId == 3)
+        {
+            Debug.Log("About Button was Clicked");
+            cur_game_state = gameState.Paused;
+        }
+
+        if (btnId == 4)
+        {
+            Debug.Log("Quit Button was Clicked");
+            Application.Quit();
+        }
     }
 
 }

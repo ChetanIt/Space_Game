@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 
     //Health
     public int num_of_hearts;
-    public int cur_health;
+    int cur_health;
     float re;
 
     //Weapon Switcher
