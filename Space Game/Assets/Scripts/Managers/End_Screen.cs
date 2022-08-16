@@ -13,15 +13,16 @@ public class End_Screen : MonoBehaviour
 
     public GameObject menu, hud;
 
-    public TextMeshProUGUI scoreDis, scoreAdd;
-    public TextMeshProUGUI lev_dis, req_dis;
+    public TextMeshProUGUI scoreDis,high_score_dis, scoreAdd;
+    public TextMeshProUGUI lev_dis, req_dis, newt;
 
     int score;
-
     int cur_level, cur;
+
+    bool done = false;
     //Score req for next level
-    [SerializeField]
-    int SRFNL = 50;
+   // [SerializeField]
+   // int SRFNL = 50;
 
     // Start is called before the first frame update
     void Start()
@@ -30,31 +31,27 @@ public class End_Screen : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (GE || !GE)
+       if(!done)  
+        EndProcess();
+    }
+
+    void EndProcess()
+    {
+        score = Player.Instance.cur_Score;
+
+        //Player has beaten his highscore
+        if (score > PlayerPrefs.GetInt("Highscore", 0))
         {
-            score = Player.Instance.cur_Score;
-            GameHasEnded();
-            scoreDis.text = "Score:" + score.ToString();
-            scoreAdd.text = "Score:" + score.ToString();
-            lev_dis.text = "Level " + cur_level;
-            req_dis.text = score.ToString() + "/" + SRFNL.ToString();
+            PlayerPrefs.SetInt("Highscore", score);
+            newt.gameObject.SetActive(true);
         }
 
-        if (SRFNL == cur ) cur_level += 1;
-    }
+        else newt.gameObject.SetActive(false);
+                 
+        high_score_dis.text = "highscore: " + PlayerPrefs.GetInt("Highscore", 0);
 
-    public void GameEnded()
-    {
-        GE = true;
-    }
-
-    void GameHasEnded()
-    {
-        menu.SetActive(GE);
-        hud.SetActive(!GE);
-        SRFNL = Mathf.FloorToInt(Mathf.Pow(cur_level, SRFNL));
-        cur += score;
+        done = true;
     }
 }

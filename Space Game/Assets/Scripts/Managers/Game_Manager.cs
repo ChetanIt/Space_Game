@@ -8,10 +8,14 @@ public class Game_Manager : MonoBehaviour
     public float galaxy_Rad;
     public int segments;
     LineRenderer line;
+
+    public GameObject main_menu, end_menu, pause_menu;
     public enum gameState { Playing, Paused, InMainMenu, InEndScreen}
     public gameState cur_game_state;
 
     public static Game_Manager instance;
+
+    
 
     private void Awake()
     {
@@ -61,12 +65,34 @@ public class Game_Manager : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, galaxy_Rad);
     }
 
+    private void Update()
+    {
+        if (cur_game_state == gameState.Paused || cur_game_state == gameState.InEndScreen || cur_game_state == gameState.InMainMenu) Player.Instance.enabled = false;
+        else if (cur_game_state == gameState.Playing) Player.Instance.enabled = true;
+        if (main_menu.activeSelf) cur_game_state = gameState.InMainMenu;
+        if (end_menu.activeSelf) cur_game_state = gameState.InEndScreen;
+        else if (cur_game_state == gameState.InEndScreen) end_menu.SetActive(true);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            cur_game_state = gameState.Paused;
+            pause_menu.SetActive(true);
+        }
+
+       
+    }
+
+
     public void BtnClked(int btnId)
     {
+        //MainMenu Buttons
+
         if (btnId == 1)
         {
             Debug.Log("Play Button was Clicked");
             cur_game_state = gameState.Playing;
+            main_menu.SetActive(false);
+            end_menu.SetActive(false);
         }
 
         if (btnId == 2)
@@ -86,6 +112,33 @@ public class Game_Manager : MonoBehaviour
             Debug.Log("Quit Button was Clicked");
             Application.Quit();
         }
+
+        //EndScreenButtons
+        if (btnId == 5)
+        {
+            Debug.Log("Play Button was Clicked");
+            cur_game_state = gameState.Playing;
+            main_menu.SetActive(false);
+            end_menu.SetActive(false);
+        }
+
+        if (btnId == 6)
+        {
+            Debug.Log("Settings Button was Clicked");
+            cur_game_state = gameState.Paused;
+        }
+        if (btnId == 7)
+        {
+            Debug.Log("About Button was Clicked");
+            cur_game_state = gameState.Paused;
+        }
+
+        if (btnId == 8)
+        {
+            Debug.Log("Quit Button was Clicked");
+            Application.Quit();
+        }
+
     }
 
 }
