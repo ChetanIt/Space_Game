@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcda7d70cd7f87b49a05e73c99e4cce8, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d76499b2eda47248a73182cf7609d55, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  gun_name: 
-  bul_speed: 5
-  fire_rate: 3
+  gun_name: Pistol
+  bul_speed: 10
+  fire_rate: 5
   num_of_buls: 1
   bul_type: 2

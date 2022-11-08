@@ -8,6 +8,7 @@ public class Game_Manager : MonoBehaviour
     public float galaxy_Rad;
     public int segments;
     LineRenderer line;
+<<<<<<< HEAD
 
     public GameObject main_menu, end_menu, pause_menu;
     public enum gameState { Playing, Paused, InMainMenu, InEndScreen}
@@ -21,6 +22,8 @@ public class Game_Manager : MonoBehaviour
     {
         instance = this;
     }
+=======
+>>>>>>> parent of 8ce7235 (P1j)
 
     private void Start()
     {
@@ -65,6 +68,7 @@ public class Game_Manager : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, galaxy_Rad);
     }
 
+<<<<<<< HEAD
     private void Update()
     {
         if (cur_game_state == gameState.Paused || cur_game_state == gameState.InEndScreen || cur_game_state == gameState.InMainMenu) Player.Instance.enabled = false;
@@ -141,4 +145,6 @@ public class Game_Manager : MonoBehaviour
 
     }
 
+=======
+>>>>>>> parent of 8ce7235 (P1j)
 }
